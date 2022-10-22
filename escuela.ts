@@ -1,22 +1,22 @@
 import * as fs from 'fs';
 // import * as 'readline-sync'
-​
-​
+
+
 class Alumno {
     private nombre: string;
-    private nota: number;
     private DNI: number;
-​
-    public constructor(nombre: string, nota: number, DNI: number) {
+    private nota: number;
+
+    public constructor(nombre: string, DNI: number,nota: number,) {
         this.nombre = nombre;
-        this.nota = nota;
         this.DNI = DNI;
+        this.nota = nota;
     }
-​
+
     public getNota() {
         return this.nota;
     }
-​
+
     public estaAprobado() {
         if (this.nota < 7) {
             console.log("El alumno esta desaprobado")
@@ -25,50 +25,49 @@ class Alumno {
         }
     }
 }
-​
+
 class Profesor {
     private nombre: string;
     private DNI: number;
     private listaAlumnos: Array<Alumno>;
-​
+
     public constructor(nombre: string, DNI: number, listaAlumnos: Array<Alumno>) {
         this.nombre = nombre;
         this.DNI = DNI;
         this.listaAlumnos = listaAlumnos;
     }
-​
+
     public getListaAlumnos() {
         return this.listaAlumnos;
     }
-​
-    public mostrarAlumnos() {
+
+public mostrarAlumnos() {
         console.log(this.listaAlumnos)
     }
-​
-​
+
 }
-​
+
 class Escuela {
     private nombre: string;
     private direccion: string;
     private listaAlumnos: Array<Alumno>;
     private listaProfes: Array<Profesor>;
-​
+
     public constructor(nombre: string, direccion: string, listaAlumnos: Array<Alumno>, listaProfes: Array<Profesor>) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.listaAlumnos = listaAlumnos;
         this.listaProfes = listaProfes;
     }
-​
+
     public getListaAlumnos() {
         return this.listaAlumnos;
     }
-​
+
     public getListaProfes() {
         return this.listaProfes;
     }
-​
+
 }
 ​
 //instalar npm install @types/node
@@ -79,18 +78,20 @@ class GestorDeArchivos {
     private arregloString: string[];
 ​
     constructor(txtFileLocation: string) {
-​
+
         let archivoTxt: string = fs.readFileSync(txtFileLocation, 'utf-8');
         this.arregloString = archivoTxt.split(';');  //vamos a tener nuestro "objetos" separados por ;
         //[Juan Perez,333333333,Karen Simari,22222222]
+
     }
-​
-​
-    public mostrarArreglo(): void {
+
+
+public mostrarArreglo(): void {
         console.log(this.arregloString);
-    }
-​
-    public getArregloString(): string[] {
+    } 
+
+
+public getArregloString(): string[] {
         return this.arregloString;
     }
 ​
@@ -151,3 +152,64 @@ for (let i: number = 0; i < datos.getArregloString().length; i++) {
 }
 ​
 console.log(arrayProfe);
+
+
+//mi codigo
+
+//funcion para crear un nuevo alumno
+ function crearAlumno(alumno: string, arrayAlumnos: Array<Alumno>): void {
+//     ​
+//         //transformo el elemento de tipo string en un objeto de tipo Alumno
+         let propiedadAlumno = alumno.split(','); //[Gabriela Serrano,23456786; Ezequiel Hernandez,34234643; Natalia Garcia,45345980]
+         let nombre: string = propiedadAlumno[0];
+         let DNI: number = Number(propiedadAlumno[1]);
+         let nota:number= Number(propiedadAlumno[2])
+         let nuevoAlumno : Alumno = new Alumno(nombre,DNI,nota);
+     ​
+//         //inserto el elemento de tipo Alumno en el arreglo recibido
+         arrayAlumnos.push(nuevoAlumno);
+    
+//     }
+
+//     function borrarrAlumno(arregloAlumnos: Array<Alumno>,  position: number): void {
+//         //editar un Alumno en el arreglo
+//         // let nombre: string = readlineSync.question("Ingrese el nombre: ")
+//         // let DNI: number = Number(readlineSync.question("Ingrese el DNI: "));
+//         // let listaAlumnos: Array<Alumno> = arregloAlumnos;
+       
+//         // let nuevoProfe: Profesor = new Profesor(nombre,DNI,listaAlumnos);
+//     ​
+//         delete arregloAlumnos[position];
+//     ​
+//         // arregloProfe[position] = nuevoProfe;
+     
+//     }
+
+// //Inicio programa Alumno
+ let datosAlumnos: GestorDeArchivos = new GestorDeArchivos('alumnado.txt');
+ let arrayAlumnosDesdeArchivo: Array<Alumno> = [];
+ //arrayAlumnosDesdeArchivo:Array<Alumno>= datosAlumnos.getArregloString();
+
+ for (let i: number = 0; i < datosAlumnos.getArregloString().length; i++) {
+    crearAlumno(datosAlumnos.getArregloString()[i],arrayAlumnosDesdeArchivo);
+ }
+
+
+// ​
+// // let alumno1 : Alumno = new Alumno('Gloria Dominguez', 8, 252546346);
+// // let alumno2 : Alumno = new Alumno('Juan Dominguez', 5, 25254255);
+// // alumno1.estaAprobado();
+// // alumno2.estaAprobado();
+// // let arrayAlumnos : Array<Alumno> = [alumno1,alumno2];
+// ​
+// //creo array de objetos
+// ​
+// for (let i: number = 0; i < datos.getArregloString().length; i++) {
+// ​
+//     //Creo Profe uno por uno leyendo el txt
+    
+//     crearProfesor(datos.getArregloString()[i], arrayProfe, arrayAlumnos);
+// ​
+// }
+// ​
+// console.log(arrayAlumnos);
