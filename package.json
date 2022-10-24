@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^18.11.3"
+    "@types/node": "^18.11.3",
+    "readline-sync": "^1.4.10"
   }
 }
