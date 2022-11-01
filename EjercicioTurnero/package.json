@@ -1,0 +1,15 @@
+{
+  "name": "ejercicioturnero",
+  "version": "1.0.0",
+  "description": "Turnos medicos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Noelia-Perez",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.11.8",
+    "readline-sync": "^1.4.10"
+  }
+}
