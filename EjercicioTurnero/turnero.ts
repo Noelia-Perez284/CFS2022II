@@ -1,8 +1,9 @@
 import Especialidad from "./class/especialidad";
 import GestorDeArchivos from "./class/gestorDeArchivo";
-import {cargarEspecialidades,crearEspecialidad,borrarEspecialidad, cargarMedico, crearNumRamdom} from "./helper"
+import {cargarEspecialidades,crearEspecialidad,borrarEspecialidad, cargarMedico, crearNumRamdom, crearNuevoMedico, borrarMedico, cargarPacientes, cargarNuevoPaciente} from "./helper"
 import { readFileSync } from "fs";
 import Medico from "./class/medico";
+import Paciente from "./class/paciente";
 
 
 
@@ -38,3 +39,27 @@ for( let i:number=0; i<datosMedicos.getArregloString().length; i++){
 
 }
 console.log(listaMedicos)
+
+
+console.log(crearNuevoMedico(listaMedicos,listaEspecialidades));
+//console.log(borrarMedico(listaMedicos));
+
+
+console.log(listaMedicos);
+
+
+//-----------------------------PACIENTES-------------------------
+
+let listaPacientes: Array <Paciente>=[];
+let datosArchivoPacientes:GestorDeArchivos=new GestorDeArchivos("./listas/pacientes.txt")
+datosArchivoPacientes.mostrarArreglo();
+
+for (let i:number=0; i< datosArchivoPacientes.getArregloString().length; i ++){
+    cargarPacientes(listaPacientes,datosArchivoPacientes.getArregloString()[i])
+    
+}
+
+console.log(listaPacientes);
+cargarNuevoPaciente(listaPacientes)
+console.log(listaPacientes);
+
