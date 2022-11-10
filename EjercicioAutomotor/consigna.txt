@@ -1,0 +1,9 @@
+Ejercicio 5
+• Crear proyecto NPM y subir a Github
+• Implementar la clase LectorArchivos → partir del
+código facilitado en la clase anterior
+• Implementar la clase RegistroAutomotor: para poder
+ver los autos registrados, para agregar un auto, para
+modificar un auto y para “borrarlo” incorporando los
+conceptos nuevos, y la clase LectorArchivos
+• Mandar por Slack el link al repositorio de GitHub

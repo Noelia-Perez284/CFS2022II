@@ -1,0 +1,15 @@
+{
+  "name": "ejercicioautomotor",
+  "version": "1.0.0",
+  "description": "Registro Del automotor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.11.9",
+    "readline-sync": "^1.4.10"
+  }
+}
