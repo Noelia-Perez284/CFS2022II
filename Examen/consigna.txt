@@ -1,0 +1,56 @@
+1-¿A que se llama Herencia?
+Respuesta: Se Llama Herencia cuando una clase toma los atributos y metodos de otra clase.
+
+2-¿Qué es una subclase?
+Respuesta: Una Subclase se llama cuando una clase hereda de otra clase, tambien se la puede llamar clase hija.
+
+3-Que es un objeto?
+Respuesta: Es una instancia de la clase.
+
+4-¿Qué significa que un atributo sea protegido?
+ Respuesta: Un atributo es protegido significa que puede ser solo accedida por su clase y 
+ las clases que la heredan.
+
+5-Existe la herencia múltiple en Typescript?
+Respuesta: No existe la herencia multiple en Typescript
+
+6-Definir Poliformismo
+Respuesta:Se refiere al hecho de tener varios métodos con el mismo nombre y la misma implementación.
+
+7-¿Qué es un constructor? Para qué sirve?
+Respuesta:Es un metodo, que sirve para instanciar al objeto.
+
+8-¿Cómo se crea una clase abstracta?
+Respuesta: Una clase abstracta se crea de la misma forma de las clases comunes, 
+con atributos , constructor y metodos, y por lo menos un metodo abstracto.
+
+9-¿Para que se usa el super?
+Respuesta: El super sirve para no reescribir codigo. 
+Lo utilizamos en una clase que hereda, cuando escribimos el constructor
+
+10-¿Qué son las interfaces?
+Respuesta: Las interfaces son contratos, donde se especifica las cosas que debe tener una clase.
+
+
+
+Ejercicios de codeo:
+1-Crear una clase -con al menos 2 métodos y 2 atributos-
+2-Crear un objeto
+3-Crear una interfaz - implementarla en una clase-
+4-Crear una clase Abstracta
+5-Crear una relación de herencia
+6-Crear un ejemplo de composición
+
+Queda a elección de cada uno de los alumnos, si hacer los ejercicios por separado o en caso contrario hacer todo en una misma clase
+
+Modo de entrega:
+Al igual a lo que venimos trabajando se debera subir el pr correspondiente a git, y mandarselo a su tutor asignado
+
+
+
+
+
+
+
+
+
