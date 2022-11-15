@@ -1,6 +1,7 @@
 import Titular from "./clases/titular";
 import Vehiculo from "./clases/vehiculo";
 import GestorDeArchivos from "./clases/gestorDeArchivo";
+
 import * as ReadlineSync from 'readline-sync';
 import { readlinkSync } from "fs";
 
@@ -72,15 +73,15 @@ export function crearNumRamdom(max :number) {
     return ubicacion
  }
 
- export function borrarTitular(arregloTitular:Array<Titular>):void{
+ export function borrarTitular(arregloTitular:Array<Titular>){
     let dni:number=ReadlineSync.questionInt("Ingrese el dni del titular a borrar: ");
     
     let u=buscarUbicacion(arregloTitular,dni)
     if(u==-1){
         console.log("No se encontro dni ingresado")
     }else{
-        arregloTitular.splice(u,1)
         console.log(`Se elimino el titular ${arregloTitular[u].getNombre()}`)
+        arregloTitular.splice(u,1) 
     }
     
     
@@ -93,4 +94,70 @@ export function crearNumRamdom(max :number) {
     // }
  }
 //------------------------VEHICULOS-----------------------
+
+//Funcion para cargar lista de Vehiculos CRUD--"Crear, Leer, Actualizar y Borrar" 
+
+export function cargarVehiculo(arregloVehiculos:Array<Vehiculo>,vehiculo:string, arregloTitular:Array <Titular>){
+    let datosDelGestor:string[]=vehiculo.split(",");
+    let dominio:string=datosDelGestor[0];
+    let marca:string=datosDelGestor[1];
+    let modelo:string=datosDelGestor[2];
+    let titular:Titular=arregloTitular[crearNumRamdom(arregloTitular.length)];
+
+    let nuevoVehiculo: Vehiculo=new Vehiculo(dominio,marca,modelo,titular);
+    arregloVehiculos.push(nuevoVehiculo);
+    
+    return arregloVehiculos
+}
+
+
+//Funcion para cargar un nuevo Vehiculo
+//Funcion para verificar si existe dominio
+function existeDominio(arregloVehiculos:Array <Vehiculo>,dominio:string){
+let existe:boolean=false;
+let i:number=0;
+while((existe==false)&&(i<arregloVehiculos.length)){
+    if(dominio==arregloVehiculos[i].getDominio()){
+        existe=true;
+    }
+    i=i+1;
+}
+return existe
+}
+
+export function cargarNuevoVehiculo(arregloVehiculos:Array<Vehiculo>,arregloTitular:Array<Titular>){
+    
+    let dominio:string=ReadlineSync.question("Ingrese Dominio del Vehiculo: ");
+    if (existeDominio(arregloVehiculos,dominio)==true){
+        dominio=ReadlineSync.question("El dominio ingresado ya existe, debe ingresar un nuevo dominio: ")
+    }
+    let marca:string=ReadlineSync.question("Ingrese marca del vehiculo: ");
+    let modelo:string=ReadlineSync.question("Ingrese modelo del vehiculo: ");
+    let titular:Titular=crearTitular(arregloTitular);
+    let nuevoVehiculo:Vehiculo=new Vehiculo(dominio,marca,modelo,titular);
+    arregloVehiculos.push(nuevoVehiculo);
+
+    return nuevoVehiculo;
+}
+
+//funcion Borrar Vehiculo
+//funcion para buscar por posicion
+export function buscarUbicacionVehiculo(arregloVehiculos:Array<Vehiculo>,dominio:string){
+    let ok:boolean=false;
+    let ubicacion:number=-1;
+    let i:number=0;
+    while((ok==false)&& (i<arregloVehiculos.length)){
+        if(dominio==arregloVehiculos[i].getDominio()){
+            ok=true
+        }else{
+            i=i+1
+        }
+    }
+}
+
+export function deleteVehiculo(arregloVehiculos:Array<Vehiculo>){
+
+}
+
+
 

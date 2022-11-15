@@ -1,7 +1,8 @@
 "use strict";
 exports.__esModule = true;
-exports.borrarTitular = exports.crearTitular = exports.cargarTitular = exports.crearNumRamdom = void 0;
+exports.deleteVehiculo = exports.buscarUbicacionVehiculo = exports.cargarNuevoVehiculo = exports.cargarVehiculo = exports.borrarTitular = exports.crearTitular = exports.cargarTitular = exports.crearNumRamdom = void 0;
 var titular_1 = require("./clases/titular");
+var vehiculo_1 = require("./clases/vehiculo");
 var ReadlineSync = require("readline-sync");
 function crearNumRamdom(max) {
     return Math.floor(Math.random() * max); //Math.floor 
@@ -66,11 +67,11 @@ function borrarTitular(arregloTitular) {
     var dni = ReadlineSync.questionInt("Ingrese el dni del titular a borrar: ");
     var u = buscarUbicacion(arregloTitular, dni);
     if (u == -1) {
-        console.log("no se encontro dni ingresado: ");
+        console.log("No se encontro dni ingresado");
     }
     else {
-        arregloTitular.splice(u, 1);
         console.log("Se elimino el titular ".concat(arregloTitular[u].getNombre()));
+        arregloTitular.splice(u, 1);
     }
     // if (existeDni(arregloTitular,dni)==false){
     //     console.log("El dni ingresado no existe")
@@ -81,3 +82,61 @@ function borrarTitular(arregloTitular) {
     // }
 }
 exports.borrarTitular = borrarTitular;
+//------------------------VEHICULOS-----------------------
+//Funcion para cargar lista de Vehiculos CRUD--"Crear, Leer, Actualizar y Borrar" 
+function cargarVehiculo(arregloVehiculos, vehiculo, arregloTitular) {
+    var datosDelGestor = vehiculo.split(",");
+    var dominio = datosDelGestor[0];
+    var marca = datosDelGestor[1];
+    var modelo = datosDelGestor[2];
+    var titular = arregloTitular[crearNumRamdom(arregloTitular.length)];
+    var nuevoVehiculo = new vehiculo_1["default"](dominio, marca, modelo, titular);
+    arregloVehiculos.push(nuevoVehiculo);
+    return arregloVehiculos;
+}
+exports.cargarVehiculo = cargarVehiculo;
+//Funcion para cargar un nuevo Vehiculo
+//Funcion para verificar si existe dominio
+function existeDominio(arregloVehiculos, dominio) {
+    var existe = false;
+    var i = 0;
+    while ((existe == false) && (i < arregloVehiculos.length)) {
+        if (dominio == arregloVehiculos[i].getDominio()) {
+            existe = true;
+        }
+        i = i + 1;
+    }
+    return existe;
+}
+function cargarNuevoVehiculo(arregloVehiculos, arregloTitular) {
+    var dominio = ReadlineSync.question("Ingrese Dominio del Vehiculo: ");
+    if (existeDominio(arregloVehiculos, dominio) == true) {
+        dominio = ReadlineSync.question("El dominio ingresado ya existe, debe ingresar un nuevo dominio: ");
+    }
+    var marca = ReadlineSync.question("Ingrese marca del vehiculo: ");
+    var modelo = ReadlineSync.question("Ingrese modelo del vehiculo: ");
+    var titular = crearTitular(arregloTitular);
+    var nuevoVehiculo = new vehiculo_1["default"](dominio, marca, modelo, titular);
+    arregloVehiculos.push(nuevoVehiculo);
+    return nuevoVehiculo;
+}
+exports.cargarNuevoVehiculo = cargarNuevoVehiculo;
+//funcion Borrar Vehiculo
+//funcion para buscar por posicion
+function buscarUbicacionVehiculo(arregloVehiculos, dominio) {
+    var ok = false;
+    var ubicacion = -1;
+    var i = 0;
+    while ((ok == false) && (i < arregloVehiculos.length)) {
+        if (dominio == arregloVehiculos[i].getDominio()) {
+            ok = true;
+        }
+        else {
+            i = i + 1;
+        }
+    }
+}
+exports.buscarUbicacionVehiculo = buscarUbicacionVehiculo;
+function deleteVehiculo(arregloVehiculos) {
+}
+exports.deleteVehiculo = deleteVehiculo;
