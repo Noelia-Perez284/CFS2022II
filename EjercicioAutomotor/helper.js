@@ -130,13 +130,24 @@ function buscarUbicacionVehiculo(arregloVehiculos, dominio) {
     while ((ok == false) && (i < arregloVehiculos.length)) {
         if (dominio == arregloVehiculos[i].getDominio()) {
             ok = true;
+            ubicacion = i;
         }
         else {
             i = i + 1;
         }
     }
+    return ubicacion;
 }
 exports.buscarUbicacionVehiculo = buscarUbicacionVehiculo;
 function deleteVehiculo(arregloVehiculos) {
+    var dominio = ReadlineSync.question("Ingrese el dominio del Vehiculo a eliminar: ");
+    var u = buscarUbicacionVehiculo(arregloVehiculos, dominio);
+    if (u == -1) {
+        console.log("No se encontro el dominio ingresado");
+    }
+    else {
+        console.log("Se elimino el dominio ".concat(arregloVehiculos[u].getDominio()));
+        arregloVehiculos.splice(u, 1);
+    }
 }
 exports.deleteVehiculo = deleteVehiculo;

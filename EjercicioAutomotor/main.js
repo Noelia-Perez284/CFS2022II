@@ -22,3 +22,5 @@ for (var i = 0; i < datosDelGestorVehiculo.getArregloString().length; i++) {
     (0, helper_1.cargarVehiculo)(listaVehiculo, datosDelGestorVehiculo.getArregloString()[i], listaTitulares);
 }
 console.log(listaVehiculo);
+console.log((0, helper_1.cargarNuevoVehiculo)(listaVehiculo, listaTitulares));
+(0, helper_1.deleteVehiculo)(listaVehiculo);

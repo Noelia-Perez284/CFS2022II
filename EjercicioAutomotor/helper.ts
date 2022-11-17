@@ -148,16 +148,24 @@ export function buscarUbicacionVehiculo(arregloVehiculos:Array<Vehiculo>,dominio
     let i:number=0;
     while((ok==false)&& (i<arregloVehiculos.length)){
         if(dominio==arregloVehiculos[i].getDominio()){
-            ok=true
+            ok=true;
+            ubicacion=i;
         }else{
             i=i+1
         }
     }
+    return ubicacion
 }
 
 export function deleteVehiculo(arregloVehiculos:Array<Vehiculo>){
-
+    let dominio:string=ReadlineSync.question("Ingrese el dominio del Vehiculo a eliminar: ");
+    
+    let u=buscarUbicacionVehiculo(arregloVehiculos,dominio)
+    if(u==-1){
+        console.log("No se encontro el dominio ingresado")
+    }else{
+        console.log(`Se elimino el dominio ${arregloVehiculos[u].getDominio()}`)
+        arregloVehiculos.splice(u,1) 
 }
-
-
+}
 

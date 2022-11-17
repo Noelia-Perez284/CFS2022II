@@ -1,7 +1,7 @@
 import GestorDeArchivos from "./clases/gestorDeArchivo";
 import Titular from "./clases/titular";
 import Vehiculo from "./clases/vehiculo";
-import { borrarTitular, cargarTitular, crearTitular,cargarVehiculo } from "./helper";
+import { borrarTitular, cargarTitular, crearTitular,cargarVehiculo, cargarNuevoVehiculo, deleteVehiculo } from "./helper";
 
 
 //-----------Titulares--------
@@ -39,4 +39,10 @@ for (let i:number=0; i<datosDelGestorVehiculo.getArregloString().length; i++){
 }
 
 console.log(listaVehiculo)
+
+console.log(cargarNuevoVehiculo(listaVehiculo,listaTitulares));
+
+deleteVehiculo(listaVehiculo);
+
+
 
